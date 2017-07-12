@@ -187,6 +187,9 @@ private:
                     image_->platform().setArchitecture(QLatin1String("arm-be"));
                 }
                 break;
+            case EM_ARM64:
+                image_->platform().setArchitecture(QLatin1String("arm64"));
+                break;
             default:
                 throw ParseError(tr("Unknown machine id: %1.").arg(ehdr_.e_machine));
         }

@@ -236,6 +236,7 @@ typedef struct {
 #define	EM_ARCA		109	/* Arca RISC Microprocessor. */
 #define	EM_UNICORE	110	/* Microprocessor series from PKU-Unity Ltd.
 				   and MPRC of Peking University */
+#define	EM_ARM64	183	/* ARM64. */
 
 /* Non-standard or deprecated. */
 #define	EM_486		6	/* Intel i486. */

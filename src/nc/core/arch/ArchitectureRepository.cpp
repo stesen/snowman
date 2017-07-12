@@ -10,6 +10,7 @@
 
 #include <nc/arch/x86/X86Architecture.h>
 #include <nc/arch/arm/ArmArchitecture.h>
+#include <nc/arch/arm64/Arm64Architecture.h>
 
 #include "Architecture.h"
 
@@ -19,9 +20,11 @@ namespace {
 
 ArchitectureRepository *createInstance() {
     using nc::arch::arm::ArmArchitecture;
+    using nc::arch::arm64::Arm64Architecture;
     using nc::arch::x86::X86Architecture;
 
     static ArchitectureRepository result;
+    result.registerArchitecture(std::make_unique<Arm64Architecture>(ByteOrder::LittleEndian));
     result.registerArchitecture(std::make_unique<ArmArchitecture>(ByteOrder::LittleEndian));
     result.registerArchitecture(std::make_unique<ArmArchitecture>(ByteOrder::BigEndian));
     result.registerArchitecture(std::make_unique<X86Architecture>(X86Architecture::REAL_MODE));
