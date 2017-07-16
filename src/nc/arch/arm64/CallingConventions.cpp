@@ -23,17 +23,17 @@ DefaultCallingConvention::DefaultCallingConvention():
     setArgumentAlignment(32);
 
     std::vector<core::ir::MemoryLocation> args;
-    args.push_back(Arm64Registers::r0()->memoryLocation());
-    args.push_back(Arm64Registers::r1()->memoryLocation());
-    args.push_back(Arm64Registers::r2()->memoryLocation());
-    args.push_back(Arm64Registers::r3()->memoryLocation());
+    args.push_back(Arm64Registers::x0()->memoryLocation());
+    args.push_back(Arm64Registers::x1()->memoryLocation());
+    args.push_back(Arm64Registers::x2()->memoryLocation());
+    args.push_back(Arm64Registers::x3()->memoryLocation());
     addArgumentGroup(std::move(args));
 
-    addReturnValueLocation(Arm64Registers::r0()->memoryLocation());
+    addReturnValueLocation(Arm64Registers::x0()->memoryLocation());
 
     addEnterStatement(std::make_unique<core::ir::Assignment>(
-        std::make_unique<core::ir::MemoryLocationAccess>(Arm64Registers::lr()->memoryLocation()),
-        std::make_unique<core::ir::Intrinsic>(core::ir::Intrinsic::RETURN_ADDRESS, Arm64Registers::lr()->size())
+        std::make_unique<core::ir::MemoryLocationAccess>(Arm64Registers::x30()->memoryLocation()),
+        std::make_unique<core::ir::Intrinsic>(core::ir::Intrinsic::RETURN_ADDRESS, Arm64Registers::x30()->size())
     ));
 }
 

@@ -21,7 +21,7 @@ Arm64Architecture::Arm64Architecture(ByteOrder byteOrder):
     byteOrder_(byteOrder)
 {
     setName(QLatin1String("arm64"));
-    setBitness(32);
+    setBitness(64);
     setMaxInstructionSize(Arm64Instruction::maxSize());
 
     setRegisters(Arm64Registers::instance());
@@ -35,13 +35,9 @@ Arm64Architecture::Arm64Architecture(ByteOrder byteOrder):
 Arm64Architecture::~Arm64Architecture() {}
 
 ByteOrder Arm64Architecture::getByteOrder(core::ir::Domain domain) const {
-    if (domain == core::ir::MemoryDomain::MEMORY ||
-        domain == core::ir::MemoryDomain::STACK)
-    {
-        return byteOrder_;
-    } else {
-        return ByteOrder::LittleEndian;
-    }
+    // just little endian
+    (void)domain;
+    return ByteOrder::LittleEndian;
 }
 
 std::unique_ptr<core::arch::Disassembler> Arm64Architecture::createDisassembler() const {
